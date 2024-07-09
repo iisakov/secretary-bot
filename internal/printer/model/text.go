@@ -6,20 +6,13 @@ type Text struct {
 	Orientation Orientation
 	Text        string
 	Line        string
-	Indent      Indent
 }
 
 type Orientation struct {
-	Start     Point
-	Align     string
-	CellAlign string
-	Space     Space
-	Border    string
-}
-
-type Indent struct {
-	Indent   Coordinate
-	NumLines uint
+	Start  Point
+	Align  string
+	Space  Space
+	Border string
 }
 
 type Space [4]Coordinate

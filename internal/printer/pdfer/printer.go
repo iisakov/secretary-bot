@@ -84,9 +84,36 @@ func (p PDFer) PrintLine(l model.Line) {
 }
 
 func (p PDFer) PrintCell(cell model.Cell) {
-	for _, l := range cell.Lines {
-		p.PrintLine(l)
+	p.SetFont(cell.Text.FVName)
+
+	if strings.Contains(cell.Border, "l") {
+		p.PrintLine(*cell.BLeft())
 	}
+	if strings.Contains(cell.Border, "t") {
+		p.PrintLine(*cell.BTop())
+	}
+	if strings.Contains(cell.Border, "r") {
+		p.PrintLine(*cell.BRight())
+	}
+	if strings.Contains(cell.Border, "b") {
+		p.PrintLine(*cell.BBottom())
+	}
+	if strings.Contains(cell.Border, "a") {
+		for _, l := range cell.Lines {
+			p.PrintLine(l)
+		}
+	}
+
+	fontDescriptor := p.GetFontDesc(cell.Text.FVName)
+	fontSize, _ := p.Pdf.GetFontSize()
+	ascent := model.Coordinate(float64(fontDescriptor.Ascent) / 1000 * fontSize)
+	// descent := model.Coordinate(float64(fontDescriptor.Descent) / 1000 * fontSize)
+	// lenText := model.Coordinate(p.Pdf.GetStringWidth(t.Text))
+	ancor := model.NewPoint(cell.TL().X(), cell.TL().Y()+ascent)
+
+	cell.Text.Orientation.Start = *ancor
+
+	p.PrintText(cell.Text)
 }
 
 func (p PDFer) PrintText(t model.Text) {
@@ -108,7 +135,7 @@ func (p PDFer) PrintText(t model.Text) {
 
 	tlPoint := model.NewPoint(ancor.X()-t.Orientation.Space.Left(), ancor.Y()-descent-ascent-t.Orientation.Space.Top())
 	brPoint := model.NewPoint(ancor.X()+lenText+t.Orientation.Space.Right(), ancor.Y()-descent+t.Orientation.Space.Bottom())
-	cell := model.NewCell(*tlPoint, *brPoint, 1)
+	cell := model.NewCell(*tlPoint, *brPoint, 1, "", "Black")
 
 	if strings.Contains(t.Orientation.Border, "l") {
 		p.PrintLine(*cell.BLeft())
@@ -123,7 +150,9 @@ func (p PDFer) PrintText(t model.Text) {
 		p.PrintLine(*cell.BBottom())
 	}
 	if strings.Contains(t.Orientation.Border, "a") {
-		p.PrintCell(*cell)
+		for _, l := range cell.Lines {
+			p.PrintLine(l)
+		}
 	}
 
 	switch {
@@ -140,10 +169,6 @@ func (p PDFer) PrintText(t model.Text) {
 		float64(ancor.Y()),
 		t.Text,
 	)
-}
-
-func (p PDFer) PrintTextInCell(t model.Text, c model.Cell) {
-	fmt.Println(c.BBottom().Len())
 }
 
 func (p PDFer) PrintGrid(x, y model.Coordinate, opt string) {

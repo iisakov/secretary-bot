@@ -10,7 +10,7 @@ import (
 func TestPDFPrintText(t *testing.T) {
 	p := NewPrinter(
 		pdfer.PDFer{},
-		"PDFerTest",
+		"PrintText",
 		model.Options{
 			Orientation: "P",
 			Unit:        "pt",
@@ -34,7 +34,7 @@ func TestPDFPrintText(t *testing.T) {
 	}
 
 	for i, fv := range *p.GetFontVariants() {
-		// Текст с границами
+		// Текст с собственными границами
 		space := model.Space{5 * model.Coordinate(i), model.Coordinate(fv.Size), 5 * model.Coordinate(i), model.Coordinate(fv.Size)}
 		y = print(p, "", "tl", fv, y, 10, "left", space)
 		y += model.Coordinate(fv.Size) * 2
@@ -44,7 +44,7 @@ func TestPDFPrintText(t *testing.T) {
 		y += model.Coordinate(fv.Size) * 2
 	}
 
-	if err := p.OutputDoc("PDFerTest"); err != nil {
+	if err := p.OutputDoc("PDFer"); err != nil {
 		fmt.Println(err)
 	}
 }
@@ -77,4 +77,58 @@ func print(
 
 	y += model.Coordinate(fv.Size)
 	return y
+}
+
+func TestPDFPrintTextInCell(t *testing.T) {
+	p := NewPrinter(
+		pdfer.PDFer{},
+		"PrintTextInCell",
+		model.Options{
+			Orientation: "P",
+			Unit:        "pt",
+			Size:        "A4",
+			FontDir:     "",
+			Inks:        []model.Ink{{Name: "test", Color: [3]int{100, 111, 255}}},
+			Fonts:       []model.Font{{Family: "PT-Root-UI", Style: "", File: "../../source/fonts/PT/PT-Root-UI/pt-root-ui_regular.ttf"}},
+		},
+	)
+
+	y := model.Coordinate(10)
+
+	for _, fv := range *p.GetFontVariants() {
+		// Текст в границах
+		y = printInCell(p, 10, y, model.Coordinate(fv.Size*3)+y, (p.GetPageSize().X()-30)/3, fv, "left")
+	}
+
+	if err := p.OutputDoc("PDFer"); err != nil {
+		fmt.Println(err)
+	}
+
+}
+
+func printInCell(
+	p model.Printer,
+	x, y, h, w model.Coordinate,
+	fv model.FontVariant,
+	cAlign string) model.Coordinate {
+
+	if y >= p.GetPageSize().Y() {
+		p.AddPage()
+		y = 10
+		h = model.Coordinate(fv.Size*3) + y
+	}
+
+	txt := model.Text{
+		Name:   "TEST",
+		FVName: fv.Name,
+		Text:   fmt.Sprintf("%s %s: %s %s c: %s", "`,y", fv.Name, fv.Family, fv.Style, fv.Color)}
+
+	cell := model.NewCell(*model.NewPoint(x, y), *model.NewPoint(w, h), 1, "a", fv.Color)
+	cell.AddText(txt, model.Indent{10, 1}, "center")
+
+	p.PrintCell(*cell)
+
+	y += h - y + 1
+	return y
+
 }

@@ -12,7 +12,7 @@ type Printer interface {
 	PrintGrid(x, y Coordinate, opt string)
 	PrintLine(l Line)
 	PrintText(t Text)
-	PrintTextInCell(t Text, c Cell)
+	PrintCell(c Cell)
 
 	OutputDoc(domen string) error
 }
