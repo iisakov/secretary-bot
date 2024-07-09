@@ -1,0 +1,166 @@
+[
+    {
+        "family": "PT-Sans",
+        "style": "",
+        "file": "../../source/fonts/PT/PT-Sans/pt-sans_regular.ttf"
+    },
+    {
+        "family": "PT-Sans",
+        "style": "b",
+        "file": "../../source/fonts/PT/PT-Sans/pt-sans_bold.ttf"
+    },
+    {
+        "family": "PT-Sans",
+        "style": "bi",
+        "file": "../../source/fonts/PT/PT-Sans/pt-sans_bold-italic.ttf"
+    },
+    {
+        "family": "PT-Sans",
+        "style": "cb",
+        "file": "../../source/fonts/PT/PT-Sans/pt-sans_caption-bold.ttf"
+    },
+    {
+        "family": "PT-Sans",
+        "style": "c",
+        "file": "../../source/fonts/PT/PT-Sans/pt-sans_caption-regular.ttf"
+    },
+    {
+        "family": "PT-Sans",
+        "style": "i",
+        "file": "../../source/fonts/PT/PT-Sans/pt-sans_italic.ttf"
+    },
+    {
+        "family": "PT-Sans",
+        "style": "nb",
+        "file": "../../source/fonts/PT/PT-Sans/pt-sans_narrow-bold.ttf"
+    },
+    {
+        "family": "PT-Sans",
+        "style": "n",
+        "file": "../../source/fonts/PT/PT-Sans/pt-sans_narrow-regular.ttf"
+    },
+
+
+    {
+        "family": "PT-Astra-Sans",
+        "style": "",
+        "file": "../../source/fonts/PT/PT-Astra-Sans/pt-astra-sans_regular.ttf"
+    },
+    {
+        "family": "PT-Astra-Sans",
+        "style": "b",
+        "file": "../../source/fonts/PT/PT-Astra-Sans/pt-astra-sans_bold.ttf"
+    },
+    {
+        "family": "PT-Astra-Sans",
+        "style": "bi",
+        "file": "../../source/fonts/PT/PT-Astra-Sans/pt-astra-sans_bold-italic.ttf"
+    },
+    {
+        "family": "PT-Astra-Sans",
+        "style": "i",
+        "file": "../../source/fonts/PT/PT-Astra-Sans/pt-astra-sans_italic.ttf"
+    },
+
+
+
+
+
+    {
+        "family": "PT-Serif",
+        "style": "",
+        "file": "../../source/fonts/PT/PT-Serif/pt-serif_regular.ttf"
+    },
+    {
+        "family": "PT-Serif",
+        "style": "b",
+        "file": "../../source/fonts/PT/PT-Serif/pt-serif_bold.ttf"
+    },
+    {
+        "family": "PT-Serif",
+        "style": "bi",
+        "file": "../../source/fonts/PT/PT-Serif/pt-serif_bold-italic.ttf"
+    },
+    {
+        "family": "PT-Serif",
+        "style": "c",
+        "file": "../../source/fonts/PT/PT-Serif/pt-serif_caption-regular.ttf"
+    },
+    {
+        "family": "PT-Serif",
+        "style": "ci",
+        "file": "../../source/fonts/PT/PT-Serif/pt-serif_caption-italic.ttf"
+    },
+    {
+        "family": "PT-Serif",
+        "style": "i",
+        "file": "../../source/fonts/PT/PT-Serif/pt-serif_italic.ttf"
+    },
+
+
+
+
+
+    {
+        "family": "PT-Astra-Serif",
+        "style": "",
+        "file": "../../source/fonts/PT/PT-Astra-Serif/pt-astra-serif_regular.ttf"
+    },
+    {
+        "family": "PT-Astra-Serif",
+        "style": "b",
+        "file": "../../source/fonts/PT/PT-Astra-Serif/pt-astra-serif_bold.ttf"
+    },
+    {
+        "family": "PT-Astra-Serif",
+        "style": "bi",
+        "file": "../../source/fonts/PT/PT-Astra-Serif/pt-astra-serif_bold-italic.ttf"
+    },
+    {
+        "family": "PT-Astra-Serif",
+        "style": "i",
+        "file": "../../source/fonts/PT/PT-Astra-Serif/pt-astra-serif_italic.ttf"
+    },
+
+
+
+    {
+        "family": "PT-Mono",
+        "style": "",
+        "file": "../../source/fonts/PT/PT-Mono/pt-mono_regular.ttf"
+    },
+    {
+        "family": "PT-Mono",
+        "style": "b",
+        "file": "../../source/fonts/PT/PT-Mono/pt-mono_bold.ttf"
+    },
+
+
+
+
+    {
+        "family": "PT-Root-UI",
+        "style": "",
+        "file": "../../source/fonts/PT/PT-Root-UI/pt-root-ui_regular.ttf"
+    },
+    {
+        "family": "PT-Root-UI",
+        "style": "b",
+        "file": "../../source/fonts/PT/PT-Root-UI/pt-root-ui_bold.ttf"
+    },
+    {
+        "family": "PT-Root-UI",
+        "style": "l",
+        "file": "../../source/fonts/PT/PT-Root-UI/pt-root-ui_light.ttf"
+    },
+    {
+        "family": "PT-Root-UI",
+        "style": "m",
+        "file": "../../source/fonts/PT/PT-Root-UI/pt-root-ui_medium.ttf"
+    },
+    {
+        "family": "PT-Root-UI",
+        "style": "vf",
+        "file": "../../source/fonts/PT/PT-Root-UI/pt-root-ui_vf.ttf"
+    }
+]

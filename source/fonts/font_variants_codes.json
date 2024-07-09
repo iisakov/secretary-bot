@@ -1,0 +1,240 @@
+[
+    {
+        "name": "DangerH1",
+        "family": "PT-Sans",
+        "style": "b",
+        "size": 10,
+        "color": "Red"
+    },
+    {
+        "name": "Default",
+        "family": "PT-Sans",
+        "style": "",
+        "size": 11,
+        "color": "Black"
+    },
+
+
+
+    {
+        "name": "PT-SS",
+        "family": "PT-Sans",
+        "style": "",
+        "size": 12,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SS b",
+        "family": "PT-Sans",
+        "style": "b",
+        "size": 13,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SS bi",
+        "family": "PT-Sans",
+        "style": "bi",
+        "size": 14,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SS cb",
+        "family": "PT-Sans",
+        "style": "cb",
+        "size": 15,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SS c",
+        "family": "PT-Sans",
+        "style": "c",
+        "size": 16,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SS i",
+        "family": "PT-Sans",
+        "style": "i",
+        "size": 17,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SS nb",
+        "family": "PT-Sans",
+        "style": "nb",
+        "size": 18,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SS n",
+        "family": "PT-Sans",
+        "style": "n",
+        "size": 19,
+        "color": "Black"
+    },
+
+
+
+
+
+    {
+        "name": "PT-A-SS",
+        "family": "PT-Astra-Sans",
+        "style": "",
+        "size": 20,
+        "color": "Black"
+    },
+    {
+        "name": "PT-A-SS b",
+        "family": "PT-Astra-Sans",
+        "style": "b",
+        "size": 19,
+        "color": "Black"
+    },
+    {
+        "name": "PT-A-SS bi",
+        "family": "PT-Astra-Sans",
+        "style": "bi",
+        "size": 18,
+        "color": "Black"
+    },
+    {
+        "name": "PT-A-SS i",
+        "family": "PT-Astra-Sans",
+        "style": "i",
+        "size": 17,
+        "color": "Black"
+    },
+
+
+
+
+    {
+        "name": "PT-SF",
+        "family": "PT-Serif",
+        "style": "",
+        "size": 16,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SF b",
+        "family": "PT-Serif",
+        "style": "b",
+        "size": 15,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SF bi",
+        "family": "PT-Serif",
+        "style": "bi",
+        "size": 14,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SF c",
+        "family": "PT-Serif",
+        "style": "c",
+        "size": 13,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SF ci",
+        "family": "PT-Serif",
+        "style": "ci",
+        "size": 12,
+        "color": "Black"
+    },
+    {
+        "name": "PT-SF i",
+        "family": "PT-Serif",
+        "style": "i",
+        "size": 11,
+        "color": "Black"
+    },
+
+
+
+
+    {
+        "name": "PT-A-SF",
+        "family": "PT-Astra-Serif",
+        "style": "",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "PT-A-SF b",
+        "family": "PT-Astra-Serif",
+        "style": "b",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "PT-A-SF bi",
+        "family": "PT-Astra-Serif",
+        "style": "bi",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "PT-A-SF i",
+        "family": "PT-Astra-Serif",
+        "style": "i",
+        "size": 10,
+        "color": "Black"
+    },
+
+
+
+    {
+        "name": "PT-M",
+        "family": "PT-Mono",
+        "style": "",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "PT-M b",
+        "family": "PT-Mono",
+        "style": "b",
+        "size": 10,
+        "color": "Black"
+    },
+
+
+    {
+        "name": "PT-RU",
+        "family": "PT-Root-UI",
+        "style": "",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "PT-RU b",
+        "family": "PT-Root-UI",
+        "style": "b",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "PT-RU l",
+        "family": "PT-Root-UI",
+        "style": "l",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "PT-RU m",
+        "family": "PT-Root-UI",
+        "style": "m",
+        "size": 11,
+        "color": "Black"
+    },
+    {
+        "name": "PT-RU vf",
+        "family": "PT-Root-UI",
+        "style": "vf",
+        "size": 10,
+        "color": "Black"
+    }
+]
