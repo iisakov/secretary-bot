@@ -97,7 +97,7 @@ func TestPDFPrintTextInCell(t *testing.T) {
 
 	for _, fv := range *p.GetFontVariants() {
 		// Текст в границах
-		y = printInCell(p, 10, y, model.Coordinate(fv.Size*3)+y, (p.GetPageSize().X()-30)/3, fv, "left")
+		y = printInCell(p, 10, y, model.Coordinate(fv.Size*3)+y, (p.GetPageSize().X()-30)/3, fv)
 	}
 
 	if err := p.OutputDoc("PDFer"); err != nil {
@@ -109,8 +109,7 @@ func TestPDFPrintTextInCell(t *testing.T) {
 func printInCell(
 	p model.Printer,
 	x, y, h, w model.Coordinate,
-	fv model.FontVariant,
-	cAlign string) model.Coordinate {
+	fv model.FontVariant) model.Coordinate {
 
 	if y >= p.GetPageSize().Y() {
 		p.AddPage()
@@ -124,7 +123,7 @@ func printInCell(
 		Text:   fmt.Sprintf("L%s %s: %s %s c: %sN", "`,y", fv.Name, fv.Family, fv.Style, fv.Color)}
 
 	cell := model.NewCell(*model.NewPoint(x, y), *model.NewPoint(w, h), 1, "a", fv.Color)
-	cell.AddText(txt, model.Indent{10, 1}, "right bottom")
+	cell.AddText(txt, model.Indent{Indent: 10, NumLines: 1}, "right bottom")
 
 	p.PrintCell(*cell)
 
