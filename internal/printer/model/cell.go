@@ -79,3 +79,11 @@ func (c Cell) BR() *Point {
 func (c Cell) BL() *Point {
 	return &c.blPoint
 }
+
+func (c Cell) Width() Coordinate {
+	return c.BTop().Len()
+}
+
+func (c Cell) Hight() Coordinate {
+	return c.BLeft().Len()
+}

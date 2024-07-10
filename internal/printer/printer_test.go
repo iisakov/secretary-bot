@@ -121,10 +121,10 @@ func printInCell(
 	txt := model.Text{
 		Name:   "TEST",
 		FVName: fv.Name,
-		Text:   fmt.Sprintf("%s %s: %s %s c: %s", "`,y", fv.Name, fv.Family, fv.Style, fv.Color)}
+		Text:   fmt.Sprintf("L%s %s: %s %s c: %sN", "`,y", fv.Name, fv.Family, fv.Style, fv.Color)}
 
 	cell := model.NewCell(*model.NewPoint(x, y), *model.NewPoint(w, h), 1, "a", fv.Color)
-	cell.AddText(txt, model.Indent{10, 1}, "center")
+	cell.AddText(txt, model.Indent{10, 1}, "right bottom")
 
 	p.PrintCell(*cell)
 

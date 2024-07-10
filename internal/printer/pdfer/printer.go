@@ -107,9 +107,24 @@ func (p PDFer) PrintCell(cell model.Cell) {
 	fontDescriptor := p.GetFontDesc(cell.Text.FVName)
 	fontSize, _ := p.Pdf.GetFontSize()
 	ascent := model.Coordinate(float64(fontDescriptor.Ascent) / 1000 * fontSize)
-	// descent := model.Coordinate(float64(fontDescriptor.Descent) / 1000 * fontSize)
-	// lenText := model.Coordinate(p.Pdf.GetStringWidth(t.Text))
-	ancor := model.NewPoint(cell.TL().X(), cell.TL().Y()+ascent)
+	descent := model.Coordinate(float64(fontDescriptor.Descent) / 1000 * fontSize)
+	// lenText := model.Coordinate(p.Pdf.GetStringWidth(cell.Text.Text))
+	ancor := model.NewPoint(cell.TL().X(), cell.TL().Y()+cell.Hight()/2-descent)
+
+	if strings.Contains(cell.TextAlign, "center") {
+		ancor.SetX(ancor.X() + cell.Width()/2)
+		cell.Text.Orientation.Align = "center"
+	}
+	if strings.Contains(cell.TextAlign, "right") {
+		ancor.SetX(ancor.X() + cell.BTop().Len())
+		cell.Text.Orientation.Align = "right"
+	}
+	if strings.Contains(cell.TextAlign, "top") {
+		ancor.SetY(ancor.Y() - cell.Hight()/2 + descent + ascent)
+	}
+	if strings.Contains(cell.TextAlign, "bottom") {
+		ancor.SetY(ancor.Y() + cell.Hight()/2 + 2*descent)
+	}
 
 	cell.Text.Orientation.Start = *ancor
 
