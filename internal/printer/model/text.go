@@ -9,10 +9,17 @@ type Text struct {
 }
 
 type Orientation struct {
-	Start  Point
-	Align  string
-	Space  Space
-	Border string
+	Start   Point
+	Align   string
+	Space   Space
+	Border  string
+	Padding float64
+	Indent  Indent
+}
+
+type Indent struct {
+	Indent   Coordinate
+	NumLines uint
 }
 
 type Space [4]Coordinate

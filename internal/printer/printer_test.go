@@ -118,13 +118,21 @@ func printInCell(
 	}
 
 	txt := model.Text{
-		Name:   "TEST",
-		FVName: fv.Name,
-		Text:   fmt.Sprintf("L%s %s: %s %s c: %sN", "`,y", fv.Name, fv.Family, fv.Style, fv.Color)}
+		Name:        "TEST",
+		FVName:      fv.Name,
+		Text:        fmt.Sprintf("L%s %s: %s %s c: %sN", "`,y", fv.Name, fv.Family, fv.Style, fv.Color),
+		Orientation: model.Orientation{Space: model.Space{10, 20, 10, 20}}}
 
 	cell := model.NewCell(*model.NewPoint(x, y), *model.NewPoint(w, h), 1, "a", fv.Color)
-	cell.AddText(txt, model.Indent{Indent: 10, NumLines: 1}, "right bottom")
+	cell.AddText(txt, "right bottom")
+	p.PrintCell(*cell)
 
+	cell = model.NewCell(*model.NewPoint(x+w, y), *model.NewPoint(2*w, h), 1, "a", fv.Color)
+	cell.AddText(txt, "center")
+	p.PrintCell(*cell)
+
+	cell = model.NewCell(*model.NewPoint(x+2*w, y), *model.NewPoint(3*w, h), 1, "a", fv.Color)
+	cell.AddText(txt, "left top")
 	p.PrintCell(*cell)
 
 	y += h - y + 1

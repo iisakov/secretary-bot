@@ -5,18 +5,12 @@ type Cell struct {
 	Color     string
 	Lines     [4]Line
 	Text      Text
-	Indent    Indent
 	TextAlign string
 
 	tlPoint Point
 	trPoint Point
 	brPoint Point
 	blPoint Point
-}
-
-type Indent struct {
-	Indent   Coordinate
-	NumLines uint
 }
 
 func NewCell(tlPoint, brPoint Point, width Coordinate, border, color string) *Cell {
@@ -37,9 +31,8 @@ func NewCell(tlPoint, brPoint Point, width Coordinate, border, color string) *Ce
 	return c
 }
 
-func (c *Cell) AddText(t Text, i Indent, ta string) *Cell {
+func (c *Cell) AddText(t Text, ta string) *Cell {
 	c.Text = t
-	c.Indent = i
 	c.TextAlign = ta
 	return c
 }

@@ -10,9 +10,10 @@ type Printer interface {
 	GetPageSize() *Point
 
 	PrintGrid(x, y Coordinate, opt string)
-	PrintLine(l Line)
-	PrintText(t Text)
-	PrintCell(c Cell)
+	PrintLine(l Line) Point
+	PrintText(t Text) Point
+	PrintCell(c Cell) Point
+	PrintTextBR(t Text) Point
 
 	OutputDoc(domen string) error
 }
