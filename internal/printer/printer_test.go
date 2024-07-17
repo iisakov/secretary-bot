@@ -155,9 +155,13 @@ func TestPDFPrintTextBr(t *testing.T) {
 	)
 
 	startLine := *model.NewPoint(p.GetPageSize().X()/2, 10)
+	p.PrintLine(*model.NewVerticalLine(p.GetPageSize().X()/2, 0, p.GetPageSize().Y(), 1))
+	p.PrintLine(*model.NewVerticalLine(10, 0, p.GetPageSize().Y(), 1))
+	p.PrintLine(*model.NewVerticalLine(p.GetPageSize().X()-10, 0, p.GetPageSize().Y(), 1))
 
 	for _, fv := range *p.GetFontVariants() {
 		// Текст с переносами
+		startLine = printBr(p, startLine, p.GetPageSize().X()/2, "right", fv)
 		startLine = printBr(p, startLine, p.GetPageSize().X()/2, "left", fv)
 	}
 
@@ -176,6 +180,9 @@ func printBr(
 	if startLine.Y() >= p.GetPageSize().Y() {
 		p.AddPage()
 		startLine.SetY(10)
+		p.PrintLine(*model.NewVerticalLine(p.GetPageSize().X()/2, 0, p.GetPageSize().Y(), 1))
+		p.PrintLine(*model.NewVerticalLine(10, 0, p.GetPageSize().Y(), 1))
+		p.PrintLine(*model.NewVerticalLine(p.GetPageSize().X()-10, 0, p.GetPageSize().Y(), 1))
 	}
 
 	txt := model.Text{
@@ -190,7 +197,7 @@ func printBr(
 			Indent:  model.Indent{Indent: 20, NumLines: 4}},
 		Line: "u",
 	}
-	return p.PrintTextBR(txt, maxLen)
+	return p.PrintTextBR(txt, maxLen-10)
 
 }
 
