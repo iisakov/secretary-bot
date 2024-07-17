@@ -59,5 +59,5 @@ func (p PDFer) PrintText(t model.Text) model.Point {
 		t.Text,
 	)
 
-	return *ancor.SetY(ancor.Y() + model.Coordinate(fontSize*t.Orientation.Padding))
+	return *model.NewPoint(t.Orientation.Start.X(), ancor.Y()+model.Coordinate(fontSize)*t.Orientation.Padding)
 }

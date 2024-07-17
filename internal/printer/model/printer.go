@@ -13,7 +13,7 @@ type Printer interface {
 	PrintLine(l Line) Point
 	PrintText(t Text) Point
 	PrintCell(c Cell) Point
-	PrintTextBR(t Text) Point
+	PrintTextBR(t Text, maxlen Coordinate) Point
 
 	OutputDoc(domen string) error
 }

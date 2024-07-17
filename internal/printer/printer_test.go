@@ -139,3 +139,59 @@ func printInCell(
 	return y
 
 }
+
+func TestPDFPrintTextBr(t *testing.T) {
+	p := NewPrinter(
+		pdfer.PDFer{},
+		"PrintTextBr",
+		model.Options{
+			Orientation: "P",
+			Unit:        "pt",
+			Size:        "A4",
+			FontDir:     "",
+			Inks:        []model.Ink{{Name: "test", Color: [3]int{100, 111, 255}}},
+			Fonts:       []model.Font{{Family: "PT-Root-UI", Style: "", File: "../../source/fonts/PT/PT-Root-UI/pt-root-ui_regular.ttf"}},
+		},
+	)
+
+	startLine := *model.NewPoint(p.GetPageSize().X()/2, 10)
+
+	for _, fv := range *p.GetFontVariants() {
+		// Текст с переносами
+		startLine = printBr(p, startLine, p.GetPageSize().X()/2, "center", fv)
+	}
+
+	if err := p.OutputDoc("PDFer"); err != nil {
+		fmt.Println(err)
+	}
+}
+
+func printBr(
+	p model.Printer,
+	startLine model.Point,
+	maxLen model.Coordinate,
+	align string,
+	fv model.FontVariant) model.Point {
+
+	if startLine.Y() >= p.GetPageSize().Y() {
+		p.AddPage()
+		startLine.SetY(10)
+	}
+
+	txt := model.Text{
+		Name:   "TEST",
+		FVName: fv.Name,
+		Text:   fmt.Sprintf("L%s %s: %s %s ml: %fN", text1, fv.Name, fv.Family, fv.Style, float64(maxLen)),
+		Orientation: model.Orientation{
+			Space:   model.Space{10, 20, 10, 20},
+			Padding: 1.5,
+			Start:   startLine,
+			Align:   align,
+			Indent:  model.Indent{Indent: 20, NumLines: 4}},
+		Line: "u",
+	}
+	return p.PrintTextBR(txt, maxLen)
+
+}
+
+var text1 = "1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9 10 "
