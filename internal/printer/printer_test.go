@@ -158,7 +158,7 @@ func TestPDFPrintTextBr(t *testing.T) {
 
 	for _, fv := range *p.GetFontVariants() {
 		// Текст с переносами
-		startLine = printBr(p, startLine, p.GetPageSize().X()/2, "center", fv)
+		startLine = printBr(p, startLine, p.GetPageSize().X()/2, "left", fv)
 	}
 
 	if err := p.OutputDoc("PDFer"); err != nil {
