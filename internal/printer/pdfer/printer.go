@@ -16,6 +16,10 @@ type PDFer struct {
 	FontVariants model.FontVariants
 }
 
+func NewPDFer() model.Printer {
+	return PDFer{}
+}
+
 func (p PDFer) Configurate(nd string, o model.Options) model.Printer {
 	inks, err := model.InksLoad()
 	if err != nil {

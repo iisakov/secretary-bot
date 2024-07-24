@@ -1,4 +1,5 @@
 package model
 
-type Operator struct {
+type Operator interface {
+	UseBluprint()
 }

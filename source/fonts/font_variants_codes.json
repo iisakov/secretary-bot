@@ -10,9 +10,45 @@
         "name": "Default",
         "family": "PT-Sans",
         "style": "",
-        "size": 11,
+        "size": 10,
         "color": "Black"
     },
+    {
+        "name": "DBody",
+        "family": "PT-Sans",
+        "style": "",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "DH1",
+        "family": "PT-Sans",
+        "style": "",
+        "size": 19,
+        "color": "Black"
+    },
+    {
+        "name": "DH2",
+        "family": "PT-Sans",
+        "style": "",
+        "size": 16,
+        "color": "Black"
+    },
+    {
+        "name": "DH3",
+        "family": "PT-Sans",
+        "style": "",
+        "size": 13,
+        "color": "Black"
+    },
+    {
+        "name": "DDesc",
+        "family": "PT-Sans",
+        "style": "i",
+        "size": 10,
+        "color": "Grey"
+    },
+
 
 
 

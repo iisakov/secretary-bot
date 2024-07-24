@@ -1,16 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"secretary/internal/blueprint"
+	"secretary/internal/operator"
 	"secretary/internal/printer"
-	"secretary/internal/printer/model"
 )
 
 func main() {
-	_, _ = model.InksLoad()
-	p := printer.NewDefaultPrinter(model.Options{})
-	b := blueprint.NewDefaultBluprint()
-	fmt.Println(p, b)
-
+	bp := blueprint.NewDefaultBluprint()
+	p := printer.NewDefaultPrinter(bp.GetOptions())
+	o := operator.NewDefaultOperator(p, bp)
+	o.UseBluprint()
 }
