@@ -1,6 +1,7 @@
 package pdfer
 
 import (
+	"fmt"
 	"secretary/internal/printer/model"
 	"strings"
 )
@@ -8,18 +9,30 @@ import (
 func (p PDFer) PrintTextBR(t model.Text, maxlen model.Coordinate) model.Point {
 	p.SetFont(t.FVName)
 	tBuilder := model.NewTextBuilder()
+	fontSize, _ := p.Pdf.GetFontSize()
+	avgTextPart := p.Pdf.GetStringWidth(t.Text) / float64(len(strings.Split(t.Text, " ")))
 
 	textPart := ""
 	startPoint := *model.NewPoint(t.Orientation.Start.X(), t.Orientation.Start.Y())
 	indent := t.Orientation.Indent.Indent
 	numLine := 0
+
 	for _, ts := range strings.Split(t.Text, " ") {
-		if p.Pdf.GetStringWidth(textPart) > float64(maxlen-indent)-p.Pdf.GetStringWidth(ts+" ") {
+		fmt.Println(p.Pdf.GetStringWidth(textPart), float64(maxlen-indent)-p.Pdf.GetStringWidth(ts+" "), avgTextPart)
+		if p.Pdf.GetStringWidth(textPart) > float64(maxlen-indent)-avgTextPart*2 {
+			fmt.Println()
 			switch t.Orientation.Align {
 			case "right":
+				if t.Line == "br" {
+					p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen+model.Coordinate(fontSize)/7, 1))
+				}
 				startPoint = printTextPart(p, t, tBuilder, startPoint, textPart, -indent)
 			default:
+				if t.Line == "br" {
+					p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen+model.Coordinate(fontSize)/7, 1))
+				}
 				startPoint = printTextPart(p, t, tBuilder, startPoint, textPart, indent)
+
 			}
 
 			textPart = ""
@@ -34,6 +47,9 @@ func (p PDFer) PrintTextBR(t model.Text, maxlen model.Coordinate) model.Point {
 		}
 	}
 	if textPart != "" {
+		if t.Line == "br" {
+			p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen-indent+model.Coordinate(fontSize)/7, 1))
+		}
 		startPoint = printTextPart(p, t, tBuilder, startPoint, textPart, indent)
 	}
 
@@ -47,11 +63,12 @@ func printTextPart(
 	sp model.Point,
 	tp string,
 	i model.Coordinate) model.Point {
+
 	sp.SetX(sp.X() + i)
 	t.Orientation.Start = sp
 	ct := tb.Name(t.Name).FVName(t.FVName).Orientation(t.Orientation).Text(tp).Line(t.Line).Build()
 	sp = p.PrintText(ct)
 	sp.SetX(sp.X() - i)
-	return sp
 
+	return sp
 }

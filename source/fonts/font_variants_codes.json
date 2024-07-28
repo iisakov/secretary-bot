@@ -42,10 +42,17 @@
         "color": "Black"
     },
     {
-        "name": "DDesc",
+        "name": "DDescH1",
         "family": "PT-Sans",
         "style": "i",
         "size": 10,
+        "color": "Grey"
+    },
+    {
+        "name": "DDescBody",
+        "family": "PT-Sans",
+        "style": "i",
+        "size": 8,
         "color": "Grey"
     },
 
