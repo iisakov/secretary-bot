@@ -15,9 +15,9 @@ func (bp DefaultBluprint) Use(p pm.Printer) bpm.Bluprint {
 	pointRedline := *pm.NewPoint(p.GetPageSize().X()/2, 20)
 
 	tBuilder := pm.NewTextBuilder().FVName("DH1").Orientation(pm.Orientation{Start: pointRedline, Padding: 1, Align: "center"}).Text(bp.Content["title"])
-	pointRedline = p.PrintText(tBuilder.Build())
+	// pointRedline = p.PrintText(tBuilder.Build())
 
-	tBuilder = tBuilder.FVName("DDesc").Orientation(pm.Orientation{Start: pointRedline, Padding: 1, Align: "center"}).Line("o").Text(bp.Content["description"])
+	tBuilder = tBuilder.FVName("DDesc").Orientation(pm.Orientation{Start: p.PrintText(tBuilder.Build()), Padding: 1, Align: "center"}).Line("o").Text(bp.Content["description"])
 	p.PrintText(tBuilder.Build())
 
 	p.OutputDoc(bp.NameDoc)
