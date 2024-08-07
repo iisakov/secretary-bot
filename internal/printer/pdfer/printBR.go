@@ -1,7 +1,6 @@
 package pdfer
 
 import (
-	"fmt"
 	"secretary/internal/printer/model"
 	"strings"
 )
@@ -18,9 +17,7 @@ func (p PDFer) PrintTextBR(t model.Text, maxlen model.Coordinate) model.Point {
 	numLine := 0
 
 	for _, ts := range strings.Split(t.Text, " ") {
-		fmt.Println(p.Pdf.GetStringWidth(textPart), float64(maxlen-indent)-p.Pdf.GetStringWidth(ts+" "), avgTextPart)
 		if p.Pdf.GetStringWidth(textPart) > float64(maxlen-indent)-avgTextPart*2 {
-			fmt.Println()
 			switch t.Orientation.Align {
 			case "right":
 				if t.Line == "br" {
@@ -48,7 +45,7 @@ func (p PDFer) PrintTextBR(t model.Text, maxlen model.Coordinate) model.Point {
 	}
 	if textPart != "" {
 		if t.Line == "br" {
-			p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen-indent+model.Coordinate(fontSize)/7, 1))
+			p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen+model.Coordinate(fontSize)/7, 1))
 		}
 		startPoint = printTextPart(p, t, tBuilder, startPoint, textPart, indent)
 	}

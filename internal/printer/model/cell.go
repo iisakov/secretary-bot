@@ -31,6 +31,11 @@ func NewCell(tlPoint, brPoint Point, width Coordinate, border, color string) *Ce
 	return c
 }
 
+func (c *Cell) AddColor(color string) *Cell {
+	c.Color = color
+	return c
+}
+
 func (c *Cell) AddText(t Text, ta string) *Cell {
 	c.Text = t
 	c.TextAlign = ta

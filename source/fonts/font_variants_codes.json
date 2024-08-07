@@ -55,6 +55,13 @@
         "size": 8,
         "color": "Grey"
     },
+    {
+        "name": "DSigne",
+        "family": "PT-Mono",
+        "style": "b",
+        "size": 10,
+        "color": "Black"
+    },
 
 
 

@@ -7,6 +7,7 @@ import (
 
 func (p PDFer) PrintCell(cell model.Cell) model.Point {
 	p.SetFont(cell.Text.FVName)
+	p.SetColor(cell.Color)
 
 	fontDescriptor := p.GetFontDesc(cell.Text.FVName)
 	fontSize, _ := p.Pdf.GetFontSize()
@@ -55,5 +56,5 @@ func (p PDFer) PrintCell(cell model.Cell) model.Point {
 		}
 	}
 
-	return *cell.BL()
+	return *cell.BL().ShiftY(float64(cell.Text.Orientation.Padding))
 }
