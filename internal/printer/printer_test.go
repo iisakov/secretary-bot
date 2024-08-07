@@ -13,11 +13,12 @@ func TestPDFPrintText(t *testing.T) {
 		"PrintText",
 		model.Options{
 			Orientation: "P",
-			Unit:        "pt",
-			Size:        "A4",
-			FontDir:     "",
-			Inks:        []model.Ink{{Name: "test", Color: [3]int{100, 111, 255}}},
-			Fonts:       []model.Font{{Family: "PT-Root-UI", Style: "", File: "../../source/fonts/PT/PT-Root-UI/pt-root-ui_regular.ttf"}},
+
+			Unit:    "pt",
+			Size:    "A4",
+			FontDir: "",
+			Inks:    []model.Ink{{Name: "test", Color: [3]int{100, 111, 255}}},
+			Fonts:   []model.Font{{Family: "PT-Root-UI", Style: "", File: "../../source/fonts/PT/PT-Root-UI/pt-root-ui_regular.ttf"}},
 		},
 	)
 
