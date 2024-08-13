@@ -3,6 +3,7 @@ package blueprint
 import (
 	bpm "secretary/internal/blueprint/model"
 	pm "secretary/internal/printer/model"
+	"time"
 )
 
 type DefaultBluprint struct {
@@ -72,6 +73,15 @@ func (bp DefaultBluprint) Use(p pm.Printer) bpm.Bluprint {
 	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextBottomRight"] + " 01")
 	pointRedline = p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "", "Default").AddText(tBuilder.Build(), "bottom right"))
 
+	tBuilder = tBuilder.FVName("DH3").Orientation(pm.Orientation{Start: *pointRedline.ShiftY(80).ShiftX(100), Padding: 0}).Line("").Text("Create time:")
+	pointRedline = p.PrintText(tBuilder.Build())
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: *pointRedline.ShiftX(70), Padding: 0}).Line("u").Text(bp.Content["date"])
+	pointRedline = p.PrintText(tBuilder.Build())
+
+	tBuilder = tBuilder.FVName("DH3").Orientation(pm.Orientation{Start: *pointRedline.SetX(p.GetPageSize().X() - 200), Padding: 0, Align: "right"}).Line("").Text("Client signe:")
+	pointRedline = p.PrintText(tBuilder.Build())
+	p.PrintLine(*pm.NewHorisontLine(pointRedline.Y(), pointRedline.X()+5, pointRedline.X()+80, 1))
+
 	tBuilder = tBuilder.FVName("DSigne").Orientation(pm.Orientation{Start: *pm.NewPoint(p.GetPageSize().X()-20, p.GetPageSize().Y()-20), Padding: 1, Align: "right"}).Text(bp.Content["signe"])
 	pointRedline = p.PrintText(tBuilder.Build())
 	return bp
@@ -104,6 +114,7 @@ func NewDefaultBluprint() bpm.Bluprint {
 			"cellTextTopRight":    "cell text top right",
 			"cellTextBottomLeft":  "cell text bottom left",
 			"cellTextBottomRight": "cell text bottom right",
+			"date":                time.Now().Format("02.01.2006 15:04:05"),
 			"signe":               "secretary bot [by_Artisan] v.2024.07.31:0.9.9"},
 	}
 	return bp
