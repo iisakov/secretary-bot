@@ -15,6 +15,10 @@ func NewDefaultOperator(p pm.Printer, bp bpm.Bluprint) om.Operator {
 	return DefaultOperator{printer: p, blueprint: bp}
 }
 
+func (o DefaultOperator) SetContent(s string) om.Operator {
+	return o
+}
+
 func (o DefaultOperator) UseBluprint() {
 	o.blueprint.Use(o.printer)
 }

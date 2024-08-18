@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"os"
 	"path"
 	"regexp"
 	"secretary/internal/blueprint"
@@ -41,6 +42,21 @@ func MessageHandle(m *tgbotapi.Message, t *tgbotapi.BotAPI) {
 
 	if matched, _ := regexp.MatchString(`^[0-9]-[0-9]{1,10}$`, mi); matched {
 		text = fmt.Sprintf("Файл %s.pdf готовится\n", mi)
+		stl.SendText(t, m.From.ID, text)
+
+		if _, err := os.Stat("../../out/fgisDoc/" + mi + ".pdf"); err == nil {
+			fmt.Println("Существует")
+			stl.SendDocument(t, m.From.ID, "../../out/fgisDoc/"+mi+".pdf")
+		}
+
+		bp := blueprint.NewFgisBluprint()
+		p := printer.NewDefaultPrinter(bp.GetOptions())
+		o := operator.NewFgisOperator(p, bp)
+		o = o.SetContent(mi)
+
+		o.UseBluprint()
+
+		text = fmt.Sprintf("Файл %s.pdf готов\n", m.Text)
 	} else {
 		text = fmt.Sprintf("Простите, но %s не выглядит как номер сертификата\n", mi)
 	}

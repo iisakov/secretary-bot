@@ -21,10 +21,10 @@ func (bp DefaultBluprint) Use(p pm.Printer) bpm.Bluprint {
 
 	pointRedline := *pm.NewPoint(p.GetPageSize().X()/2, 20)
 
-	tBuilder := pm.NewTextBuilder().FVName("DH1").Orientation(pm.Orientation{Start: pointRedline, Padding: 0.7, Align: "center"}).Line("u").Text(bp.Content["title"])
+	tBuilder := pm.NewTextBuilder().FVName("DH1").Orientation(pm.Orientation{Start: pointRedline, Padding: 0.7, Align: "center"}).Line("u").Text(bp.Content["title"].(string))
 	pointRedline = p.PrintText(tBuilder.Build())
 
-	tBuilder = tBuilder.FVName("DDescH1").Orientation(pm.Orientation{Start: pointRedline, Padding: 1, Align: "center"}).Line("").Text(bp.Content["description"])
+	tBuilder = tBuilder.FVName("DDescH1").Orientation(pm.Orientation{Start: pointRedline, Padding: 1, Align: "center"}).Line("").Text(bp.Content["description"].(string))
 	pointRedline = p.PrintText(tBuilder.Build())
 
 	// longText section
@@ -35,11 +35,11 @@ func (bp DefaultBluprint) Use(p pm.Printer) bpm.Bluprint {
 	p.PrintTextBR(tBuilder.Build(), 200)
 
 	pointRedline.ShiftX(15)
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: pointRedline, Padding: 2, Indent: pm.Indent{Indent: pm.Coordinate(40), NumLines: 1}}).Line("br").Text(bp.Content["longText"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: pointRedline, Padding: 2, Indent: pm.Indent{Indent: pm.Coordinate(40), NumLines: 1}}).Line("br").Text(bp.Content["longText"].(string) + " 01")
 	pointRedline = p.PrintTextBR(tBuilder.Build(), p.GetPageSize().X()-20)
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: pointRedline, Padding: 2}).Line("br").Text(bp.Content["longText"] + " 02")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: pointRedline, Padding: 2}).Line("br").Text(bp.Content["longText"].(string) + " 02")
 	pointRedline = p.PrintTextBR(tBuilder.Build(), p.GetPageSize().X()-20)
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: pointRedline, Padding: 2}).Line("br").Text(bp.Content["longText"] + " 03")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: pointRedline, Padding: 2}).Line("br").Text(bp.Content["longText"].(string) + " 03")
 	pointRedline = p.PrintTextBR(tBuilder.Build(), p.GetPageSize().X()-20)
 
 	//shortText section
@@ -50,39 +50,39 @@ func (bp DefaultBluprint) Use(p pm.Printer) bpm.Bluprint {
 	p.PrintTextBR(tBuilder.Build(), p.GetPageSize().X()-40)
 
 	pointRedline.ShiftX(15)
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: pointRedline, Padding: 2, Indent: pm.Indent{Indent: pm.Coordinate(40), NumLines: 1}}).Line("br").Text(bp.Content["shortText"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: pointRedline, Padding: 2, Indent: pm.Indent{Indent: pm.Coordinate(40), NumLines: 1}}).Line("br").Text(bp.Content["shortText"].(string) + " 01")
 	pointRedline = p.PrintTextBR(tBuilder.Build(), p.GetPageSize().X()-20)
 
 	pointRedline.ShiftY(20)
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextCenter"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextCenter"].(string) + " 01")
 	p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "a", "Default").AddText(tBuilder.Build(), "center"))
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextTop"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextTop"].(string) + " 01")
 	p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "", "Default").AddText(tBuilder.Build(), "center top"))
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextLeft"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextLeft"].(string) + " 01")
 	p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "", "Default").AddText(tBuilder.Build(), "left"))
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextRight"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextRight"].(string) + " 01")
 	p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "", "Default").AddText(tBuilder.Build(), "right"))
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextBottom"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextBottom"].(string) + " 01")
 	p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "", "Default").AddText(tBuilder.Build(), "center bottom"))
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextTopLeft"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextTopLeft"].(string) + " 01")
 	p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "", "Default").AddText(tBuilder.Build(), "top left"))
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextTopRight"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextTopRight"].(string) + " 01")
 	p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "", "Default").AddText(tBuilder.Build(), "top right"))
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextBottomLeft"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextBottomLeft"].(string) + " 01")
 	p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "", "Default").AddText(tBuilder.Build(), "bottom left"))
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextBottomRight"] + " 01")
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{}).Text(bp.Content["cellTextBottomRight"].(string) + " 01")
 	pointRedline = p.PrintCell(*pm.NewCell(*pointRedline.SetX(20), *pm.NewPoint(p.GetPageSize().X()-20, pointRedline.Y()+200), 1, "", "Default").AddText(tBuilder.Build(), "bottom right"))
 
 	tBuilder = tBuilder.FVName("DH3").Orientation(pm.Orientation{Start: *pointRedline.ShiftY(80).ShiftX(100), Padding: 0}).Line("").Text("Create time:")
 	pointRedline = p.PrintText(tBuilder.Build())
-	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: *pointRedline.ShiftX(70), Padding: 0}).Line("u").Text(bp.Content["date"])
+	tBuilder = tBuilder.FVName("DBody").Orientation(pm.Orientation{Start: *pointRedline.ShiftX(70), Padding: 0}).Line("u").Text(bp.Content["date"].(string))
 	pointRedline = p.PrintText(tBuilder.Build())
 
 	tBuilder = tBuilder.FVName("DH3").Orientation(pm.Orientation{Start: *pointRedline.SetX(p.GetPageSize().X() - 200), Padding: 0, Align: "right"}).Line("").Text("Client signe:")
 	pointRedline = p.PrintText(tBuilder.Build())
 	p.PrintLine(*pm.NewHorisontLine(pointRedline.Y(), pointRedline.X()+5, pointRedline.X()+80, 1))
 
-	tBuilder = tBuilder.FVName("DSigne").Orientation(pm.Orientation{Start: *pm.NewPoint(p.GetPageSize().X()-20, p.GetPageSize().Y()-20), Padding: 1, Align: "right"}).Text(bp.Content["signe"])
+	tBuilder = tBuilder.FVName("DSigne").Orientation(pm.Orientation{Start: *pm.NewPoint(p.GetPageSize().X()-20, p.GetPageSize().Y()-20), Padding: 1, Align: "right"}).Text(bp.Content["signe"].(string))
 	pointRedline = p.PrintText(tBuilder.Build())
 	return bp
 }
@@ -100,7 +100,7 @@ func NewDefaultBluprint() bpm.Bluprint {
 			Size:        "A4",
 			FontDir:     "",
 		},
-		Content: map[string]string{
+		Content: map[string]any{
 			"title":               "DefaultDoc Bluprint",
 			"description":         "this bluprint show all default fiches.",
 			"longText":            "long-long-long long long long long long long long very long long long long long long long long long long very very very very most very long text. This text do not see in once screen.",
@@ -117,5 +117,10 @@ func NewDefaultBluprint() bpm.Bluprint {
 			"date":                time.Now().Format("02.01.2006 15:04:05"),
 			"signe":               "secretary bot [by_Artisan] v.2024.07.31:0.9.9"},
 	}
+	return bp
+}
+
+func (bp DefaultBluprint) SetContent(c bpm.Content) bpm.Bluprint {
+	bp.Content = c
 	return bp
 }
