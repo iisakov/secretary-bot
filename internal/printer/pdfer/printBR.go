@@ -1,6 +1,7 @@
 package pdfer
 
 import (
+	"fmt"
 	"secretary/internal/printer/model"
 	"strings"
 )
@@ -17,19 +18,25 @@ func (p PDFer) PrintTextBR(t model.Text, maxlen model.Coordinate) model.Point {
 	numLine := 0
 
 	for _, ts := range strings.Split(t.Text, " ") {
-		if p.Pdf.GetStringWidth(textPart) > float64(maxlen-indent)-avgTextPart*2 {
+		if p.Pdf.GetStringWidth(textPart) > float64(maxlen-indent)-avgTextPart*2.5 {
 			switch t.Orientation.Align {
 			case "right":
 				if t.Line == "br" {
-					p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen+model.Coordinate(fontSize)/7, 1))
+					p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen+model.Coordinate(fontSize)/7, model.Coordinate(fontSize/15)))
 				}
 				startPoint = printTextPart(p, t, tBuilder, startPoint, textPart, -indent)
 			default:
 				if t.Line == "br" {
-					p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen+model.Coordinate(fontSize)/7, 1))
+					if t.Orientation.Align == "center" {
+						fmt.Println("center")
+						sp := startPoint.X() + indent - model.Coordinate(fontSize)/7
+						ep := maxlen + model.Coordinate(fontSize)/7
+						p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, sp+sp-ep-20, ep+20, model.Coordinate(fontSize/15)))
+					} else {
+						p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen+model.Coordinate(fontSize)/7, model.Coordinate(fontSize/15)))
+					}
 				}
 				startPoint = printTextPart(p, t, tBuilder, startPoint, textPart, indent)
-
 			}
 
 			textPart = ""
@@ -45,7 +52,14 @@ func (p PDFer) PrintTextBR(t model.Text, maxlen model.Coordinate) model.Point {
 	}
 	if textPart != "" {
 		if t.Line == "br" {
-			p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen+model.Coordinate(fontSize)/7, 1))
+			if t.Orientation.Align == "center" {
+				fmt.Println("center")
+				sp := startPoint.X() + indent - model.Coordinate(fontSize)/7
+				ep := maxlen + model.Coordinate(fontSize)/7
+				p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, sp+sp-ep-10, ep+10, model.Coordinate(fontSize/15)))
+			} else {
+				p.PrintLine(*model.NewHorisontLine(startPoint.Y()+model.Coordinate(fontSize)/10, startPoint.X()+indent-model.Coordinate(fontSize)/7, maxlen+model.Coordinate(fontSize)/7, model.Coordinate(fontSize/15)))
+			}
 		}
 		startPoint = printTextPart(p, t, tBuilder, startPoint, textPart, indent)
 	}

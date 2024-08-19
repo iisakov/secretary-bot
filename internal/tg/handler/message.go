@@ -2,7 +2,6 @@ package handler
 
 import (
 	"fmt"
-	"os"
 	"path"
 	"regexp"
 	"secretary/internal/blueprint"
@@ -40,14 +39,14 @@ func MessageHandle(m *tgbotapi.Message, t *tgbotapi.BotAPI) {
 		mi = m.Text
 	}
 
-	if matched, _ := regexp.MatchString(`^[0-9]-[0-9]{1,10}$`, mi); matched {
+	if matched, _ := regexp.MatchString(`^[1-9]-[0-9]{1,10}$`, mi); matched && mi != "1-0" {
 		text = fmt.Sprintf("Файл %s.pdf готовится\n", mi)
 		stl.SendText(t, m.From.ID, text)
 
-		if _, err := os.Stat("../../out/fgisDoc/" + mi + ".pdf"); err == nil {
-			fmt.Println("Существует")
-			stl.SendDocument(t, m.From.ID, "../../out/fgisDoc/"+mi+".pdf")
-		}
+		// if _, err := os.Stat("../../out/fgisDoc/" + mi + ".pdf"); err == nil {
+		// 	fmt.Println("Существует")
+		// 	stl.SendDocument(t, m.From.ID, "../../out/fgisDoc/"+mi+".pdf")
+		// }
 
 		bp := blueprint.NewFgisBluprint()
 		p := printer.NewDefaultPrinter(bp.GetOptions())
@@ -56,11 +55,11 @@ func MessageHandle(m *tgbotapi.Message, t *tgbotapi.BotAPI) {
 
 		o.UseBluprint()
 
-		text = fmt.Sprintf("Файл %s.pdf готов\n", m.Text)
+		text = fmt.Sprintf("Файл %s.pdf готов\n", mi)
 	} else {
 		text = fmt.Sprintf("Простите, но %s не выглядит как номер сертификата\n", mi)
 	}
-
+	stl.SendDocument(t, m.From.ID, "../../out/fgisDoc/"+mi+".pdf")
 	stl.SendText(t, m.From.ID, text)
 
 }

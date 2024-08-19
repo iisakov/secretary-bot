@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"strings"
 )
 
 func FgisRequest(cert string) (response map[string]any, err error) {
@@ -23,6 +24,7 @@ func FgisRequest(cert string) (response map[string]any, err error) {
 		return nil, err
 	}
 
-	response["url"] = url
+	response["result"].(map[string]any)["url"] = url
+	response["result"].(map[string]any)["recordsNum"] = strings.Split(cert, "-")[1]
 	return response, nil
 }

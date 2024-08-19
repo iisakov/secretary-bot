@@ -120,4 +120,6 @@ type Cert struct {
 	Mieta                []string `json:"mieta"`
 	Url                  string   `json:"url"`
 	BriefCharacteristics string   `json:"riefCharacteristics"`
+	RecordsNum           string   `json:"recordsNum"`
+	VrfDate              string   `json:"vrfDate"`
 }

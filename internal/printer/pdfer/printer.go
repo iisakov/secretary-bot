@@ -54,6 +54,10 @@ func (p PDFer) GetFontVariants() *model.FontVariants {
 	return &p.FontVariants
 }
 
+func (p PDFer) GetStrWidth(t string) model.Coordinate {
+	return model.Coordinate(p.Pdf.GetStringWidth(t))
+}
+
 func (p PDFer) GetPageSize() *model.Point {
 	x, y := p.Pdf.GetPageSize()
 	return model.NewPoint(model.Coordinate(x), model.Coordinate(y))

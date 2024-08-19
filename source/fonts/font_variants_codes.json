@@ -66,6 +66,70 @@
 
 
 
+
+
+
+
+    {
+        "name": "fgisBody",
+        "family": "PT-Mono",
+        "style": "",
+        "size": 8,
+        "color": "Black"
+    },
+    {
+        "name": "fgisSmallBody",
+        "family": "PT-Mono",
+        "style": "",
+        "size": 7,
+        "color": "Black"
+    },
+    {
+        "name": "fgisH1",
+        "family": "PT-Mono",
+        "style": "b",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "fgisH2",
+        "family": "PT-Mono",
+        "style": "",
+        "size": 10,
+        "color": "Black"
+    },
+    {
+        "name": "fgisH3",
+        "family": "PT-Sans",
+        "style": "",
+        "size": 13,
+        "color": "Black"
+    },
+    {
+        "name": "fgisDescH1",
+        "family": "PT-Sans",
+        "style": "i",
+        "size": 10,
+        "color": "Grey"
+    },
+    {
+        "name": "fgisDescBody",
+        "family": "PT-Mono",
+        "style": "",
+        "size": 6,
+        "color": "Grey"
+    },
+    {
+        "name": "fgisSigne",
+        "family": "PT-Mono",
+        "style": "b",
+        "size": 10,
+        "color": "Black"
+    },
+
+
+
+
     {
         "name": "PT-SS",
         "family": "PT-Sans",

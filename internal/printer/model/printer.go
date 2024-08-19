@@ -8,6 +8,7 @@ type Printer interface {
 
 	GetFontVariants() *FontVariants
 	GetPageSize() *Point
+	GetStrWidth(t string) Coordinate
 
 	PrintGrid(x, y Coordinate, opt string)
 	PrintLine(l Line) Point
